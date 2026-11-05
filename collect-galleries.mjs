@@ -1,0 +1,6 @@
+import fs from 'node:fs/promises';
+const sources=JSON.parse(await fs.readFile('dist/photo-sources.json','utf8'));
+const overrides={fa607:'https://press.asus.com/media/photos/119/albums/647/',victus:'https://www.hp.com/us-en/shop/pdp/victus-gaming-laptop-15-fa1005nr',loq:'https://www.lenovo.com/us/en/p/laptops/loq-laptops/lenovo-loq-15arp10e/len101q0015',msi:'https://www.msi.com/Laptop/Thin-GF63-12VX/Gallery'};
+const results={};
+await Promise.allSettled(sources.map(async a=>{const url=overrides[a.key]||a.source;try{const r=await fetch(url,{headers:{'User-Agent':'Mozilla/5.0'},signal:AbortSignal.timeout(45000)});const html=(await r.text()).replaceAll('\\/','/').replaceAll('&amp;','&');await fs.mkdir('outputs/pages',{recursive:true});await fs.writeFile('outputs/pages/'+a.key+'.html',html);const matches=[...html.matchAll(/(?:https?:)?\/\/[^\s"'<>\\]+?\.(?:png|jpg|jpeg|webp)(?:\?[^\s"'<>\\]*)?/gi)].map(m=>m[0].startsWith('//')?'https:'+m[0]:m[0]);results[a.key]={source:url,status:r.status,images:[...new Set(matches)]};console.log(a.key,r.status,results[a.key].images.length)}catch(e){results[a.key]={source:url,error:e.message};console.log(a.key,e.message)}}));
+await fs.writeFile('outputs/gallery-candidates.json',JSON.stringify(results,null,2));

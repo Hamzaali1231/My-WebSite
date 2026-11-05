@@ -1,0 +1,27 @@
+const rows=[
+['ASUS','Vivobook 15','R1504VA-BQ110','Core i3-1315U','8GB DDR4','512GB SSD','15.6″ FHD','Integrated graphics',470,'Silver'],
+['ASUS','Vivobook 15','X1504VA-BQ4172','Core 5 120U','8GB DDR5','512GB SSD','15.6″ FHD','Integrated graphics',550,'Silver'],
+['ASUS','Vivobook 15','X1504VA-BQ4852','Core 7 150U','8GB DDR4','512GB SSD','15.6″ FHD','Integrated graphics',650,'Silver'],
+['ASUS','Vivobook 15','X1504VA-NJ379','Core i7-1355U','8GB DDR4','512GB SSD','15.6″ FHD','Integrated graphics',600,'Silver'],
+['ASUS','TUF 15','FA506NCQ-HN037','Ryzen 7 170','8GB DDR5','512GB SSD','15.6″ FHD IPS · 144Hz','RTX 3050 4GB',850,''],
+['ASUS','TUF 16','FX607VJB-RL102W','Core 5 210H','8GB DDR5','512GB SSD','16″ FHD+ · 144Hz','RTX 3050 6GB',885,'Windows 11'],
+['ASUS','TUF 16','FX607VJB-RL102W','Core 5 210H','16GB DDR5','512GB SSD','16″ FHD+ · 144Hz','RTX 3050 6GB',950,'Windows 11'],
+['ASUS','TUF 16','FA607NUQ-RL023AR','Ryzen 7 170','16GB DDR5','512GB SSD','16″ FHD+ IPS · 144Hz · 100% sRGB','RTX 4050 6GB',1100,''],
+['ASUS','TUF 16','FA608UH-RV018','Ryzen 7 260','16GB DDR5','512GB SSD','16″ FHD+ IPS · 165Hz · 100% sRGB','RTX 5050 8GB',1300,''],
+['ASUS','TUF 16','FX608JHR-RV083','Core i7-14650HX','16GB DDR5','1TB SSD','16″ FHD+ · 165Hz · 100% sRGB','RTX 5050 8GB',1425,''],
+['ASUS','TUF 16','FX608JMR-RV070W','Core i7-14650HX','16GB DDR5','512GB SSD','16″ FHD+ · 165Hz · 100% sRGB','RTX 5060 8GB',1450,''],
+['ASUS','TUF 16','FX608JMR-RV1617','Core i7-14650HX','32GB DDR5','1TB SSD','16″ FHD+ · 165Hz · 100% sRGB','RTX 5060 8GB',1600,''],
+['HP','HP 15','15-fd0096nq','Core i3-1315U','8GB','512GB SSD','15.6″ FHD','Integrated graphics',465,'Windows 11'],
+['HP','HP 255 G10','255R G10','Ryzen 3 7330U','8GB DDR4','512GB SSD','15.6″ FHD','Integrated graphics',440,'Silver · Windows 11'],
+['HP','HP 15','15-FD0362NIA','Core i5-1334U','8GB DDR4','512GB SSD','15.6″ FHD LED','MX570 2GB',600,'Silver'],
+['HP','Victus 15','15-FB3093DX','Ryzen 7 7445HS','16GB DDR5','512GB SSD','15.6″ FHD · 144Hz','RTX 4050 6GB',1000,'Windows 11'],
+['HP','Victus 15','15-FA2391TX','Core i7-13620H','16GB DDR4','512GB SSD','15.6″ FHD · 144Hz','RTX 5050 8GB',1150,'Windows 11'],
+['Lenovo','IdeaPad Slim 3','15IRU8','Core i3-1315U','8GB DDR5','256GB SSD','15.6″ FHD','Integrated graphics',430,'Grey'],
+['Lenovo','IdeaPad Slim 3','15IRU8','Core i3-1315U','8GB DDR5','512GB SSD','15.6″ FHD','Integrated graphics',460,'Grey'],
+['Lenovo','IdeaPad Slim 3','15IRH10','Core i7-13620H','8GB DDR5','512GB SSD','15.3″ FHD','Integrated graphics',650,'Grey · Original Lenovo bag included'],
+['Lenovo','LOQ','15ARP10E','Ryzen 7 170','16GB DDR5','512GB SSD','15.6″ FHD IPS','RTX 4050 6GB',1025,'Grey'],
+['Dell','Dell 15','DC15250','Core i5-1334U','8GB DDR4','512GB SSD','15.6″ FHD Touch IPS','Integrated graphics',525,'Black · Windows 11'],
+['Acer','Nitro','ANV15-52-58P7','Core 5 210H','16GB DDR5','512GB SSD','15.6″ FHD · 165Hz · 100% sRGB','RTX 4050 6GB',900,''],
+['MSI','Thin 63','THIN63','Core i5-13420H','16GB DDR4','512GB SSD','15.6″ FHD · 144Hz · 100% sRGB','RTX 4050 6GB',975,'']];
+const photoKeys=['vivobook','vivobook','vivobook','vivobook','fa506','fx607','fx607','fa607','fa608','fx608','fx608','fx608','hp15','hp255','hp15','victus','victus','slim8','slim8','slim10','loq','dell','acer','msi'];
+const products=rows.map((r,id)=>({id,brand:r[0],name:r[1],model:r[2],cpu:r[3],ram:r[4],storage:r[5],display:r[6],gpu:r[7],price:r[8],extra:r[9],photo:`images/${photoKeys[id]}.jpg`}));
