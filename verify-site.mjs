@@ -1,5 +1,5 @@
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import crypto from 'node:crypto';
-const html=fs.readFileSync('dist/index.html','utf8');const scripts=['catalog.js','galleries.js','translations.js','app.js'].map(f=>fs.readFileSync('dist/'+f,'utf8'));
+const html=fs.readFileSync('dist/index.html','utf8');const scripts=['catalog.js','galleries.js','translations.js','design-copy.js','app.js'].map(f=>fs.readFileSync('dist/'+f,'utf8'));
 const els=new Map();const element=key=>{if(!els.has(key))els.set(key,{value:key==='#sort'?'featured':'',innerHTML:'',textContent:'',dataset:{},hidden:false,open:false,close(){this.open=false},showModal(){this.open=true},reset(){},addEventListener(){},setAttribute(){},classList:{toggle(){}}});return els.get(key)};const saved=new Map();const calls=[];
 const context=vm.createContext({console,URLSearchParams,location:{search:''},navigator:{language:'en-US'},localStorage:{getItem:k=>saved.get(k),setItem:(k,v)=>saved.set(k,v)},document:{documentElement:{},querySelector:element,querySelectorAll:()=>[],addEventListener(){}},window:{open:url=>calls.push(url)},FormData:class{constructor(){this.fields={name:'Test Buyer',phone:'+963000000000',city:'Test City',address:'',notes:''}}get(k){return this.fields[k]}}});
 vm.runInContext(scripts.join('\n'),context);
