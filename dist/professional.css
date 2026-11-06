@@ -71,3 +71,36 @@ html[dir=rtl] #showcase-name{font-size:23px}html[dir=rtl] .showcase-detail{font-
 .telegram-offers{margin-top:26px}.telegram-offers p{margin:0 0 12px;font-size:14px;font-weight:600}.telegram-offers .contact{display:inline-flex;align-items:center;justify-content:center;max-width:100%;text-align:center;line-height:1.5}.telegram-offers a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
 
 .syria-search{border-top:1px solid var(--line);padding:30px 0 40px;max-width:850px}.syria-search h2{font-size:clamp(23px,3vw,30px);line-height:1.5;margin-bottom:14px}.syria-search p{font-size:14px;line-height:1.9;color:var(--muted)}.syria-search a{text-decoration:underline;text-underline-offset:4px}
+
+/* Phone layouts and touch controls. */
+@media(max-width:700px){
+header{align-items:center;gap:12px}
+header .logo{max-width:100%}
+.header-actions,[dir=rtl] .header-actions{width:100%;margin-inline-start:0;justify-content:space-between;gap:12px}
+header .contact{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;font-size:13px;white-space:normal;text-align:center}
+.language-switch button{min-height:44px;min-width:44px}
+.hero-copy,.laptop-showcase,.grid article,.search-sort,.showcase-title-row>div{min-width:0}
+.hero-actions{flex-wrap:wrap}
+.hero-copy .brands{flex-wrap:wrap;justify-content:flex-start;gap:12px 20px}
+.filter,.buy,.showcase-arrow,#showcase-pause,.close{min-height:44px;min-width:44px}
+.showcase-arrow{width:44px;height:44px}
+.showcase-selector{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.showcase-selector button{min-height:64px}
+.showcase-selector span{font-size:9px}
+#showcase-name{overflow-wrap:anywhere}
+.showcase-title-row{flex-wrap:wrap;gap:12px}
+.search input,select,form input:not([type=checkbox]),textarea{font-size:16px}
+.search,select{min-height:44px}
+dialog{width:calc(100% - 24px);max-width:540px;max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain}
+dialog h2{padding-inline-end:30px;overflow-wrap:anywhere}
+dl>div{grid-template-columns:minmax(0,90px) minmax(0,1fr)}
+dd{overflow-wrap:anywhere}
+footer>a{overflow-wrap:anywhere}
+}
+@media(max-width:360px){
+.hero-copy h1{font-size:clamp(38px,12vw,47px)}
+html[dir=rtl] .hero-copy h1{font-size:38px}
+.grid article{padding:18px}
+.card-bottom{flex-wrap:wrap;gap:12px}
+.telegram-offers .contact{width:100%}
+}
