@@ -69,3 +69,5 @@ html[dir=rtl] #showcase-name{font-size:23px}html[dir=rtl] .showcase-detail{font-
 @media(max-width:700px){.showcase-product{height:235px;margin-top:32px}#showcase-brand{font-size:13px}}
 
 .telegram-offers{margin-top:26px}.telegram-offers p{margin:0 0 12px;font-size:14px;font-weight:600}.telegram-offers .contact{display:inline-flex;align-items:center;justify-content:center;max-width:100%;text-align:center;line-height:1.5}.telegram-offers a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+
+.syria-search{border-top:1px solid var(--line);padding:30px 0 40px;max-width:850px}.syria-search h2{font-size:clamp(23px,3vw,30px);line-height:1.5;margin-bottom:14px}.syria-search p{font-size:14px;line-height:1.9;color:var(--muted)}.syria-search a{text-decoration:underline;text-underline-offset:4px}

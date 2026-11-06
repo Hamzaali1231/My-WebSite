@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+const origin='https://hamza-laptop-store-1105.pebblymanatee1.chatgpt.site';
+const ctx=vm.createContext({});
+for(const file of ['translations.js','design-copy.js','gray-copy.js','catalog.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),ctx);
+const translations=vm.runInContext('translations',ctx),products=vm.runInContext('products',ctx);
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const copy={en:{title:'Laptop House Syria | Laptop Prices & Offers | لابتوب هاوس',description:'Explore laptop prices and offers for customers in Syria at Laptop House. Compare ASUS, HP, Lenovo, Dell, Acer and MSI laptops, and contact us on WhatsApp.',heading:'Laptops and offers for customers in Syria',text:'Compare laptop prices in USD, processors, memory and graphics for work, study and gaming. Contact Laptop House on WhatsApp to confirm availability, your delivery area and the final price. Follow our Telegram channel for all our offers.'},ar:{title:'لابتوب هاوس سوريا | أسعار وعروض اللابتوبات | Laptop House',description:'اكتشف أسعار وعروض اللابتوبات في سوريا مع لابتوب هاوس. قارن أجهزة ASUS وHP وLenovo وDell وAcer وMSI وتواصل معنا عبر واتساب لتأكيد التوفر والسعر.',heading:'أسعار وعروض اللابتوبات في سوريا',text:'قارن أسعار اللابتوبات بالدولار ومواصفات المعالج والذاكرة وكرت الشاشة للعمل والدراسة والألعاب. تواصل مع لابتوب هاوس عبر واتساب لتأكيد التوفر ومنطقة التوصيل والسعر النهائي، وتابع قناتنا على تيليجرام لمشاهدة جميع عروضنا.'}};
+let template=fs.readFileSync('dist/index.html','utf8');
+template=template.replace(/<section class="syria-search"[\s\S]*?<\/section>/,'').replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace(/<meta (?:name="robots"|property="og:[^"]+"|name="twitter:[^"]+")[^>]*>/g,'').replace(/<link rel="(?:canonical|alternate)"[^>]*>/g,'');
+for(const lang of ['en','ar']){
+ const c=copy[lang],url=origin+(lang==='ar'?'/ar.html':'/');
+ let html=template.replace(/<html[^>]*>/,`<html lang="${lang}" dir="${lang==='ar'?'rtl':'ltr'}">`);
+ // Pre-render translated content so crawlers and visitors receive useful HTML immediately.
+ html=html.replace(/(<([a-z][\w-]*)\b[^>]*\bdata-i18n="([^"]+)"[^>]*>)[\s\S]*?(<\/\2>)/gi,(all,start,tag,key,end)=>translations[lang][key]!==undefined?start+translations[lang][key]+end:all);
+ html=html.replace(/<title>[\s\S]*?<\/title>/,`<title>${escape(c.title)}</title>`).replace(/<meta name="description"[^>]*>/,`<meta name="description" content="${escape(c.description)}">`);
+ const data={'@context':'https://schema.org','@graph':[{'@type':'Organization','@id':origin+'/#organization',name:'Laptop House',alternateName:['لابتوب هاوس','Laptop House Syria'],url:origin+'/',logo:origin+'/logo.svg',telephone:'+963982759514',areaServed:{'@type':'Country',name:'Syria'},sameAs:['https://t.me/+g6BTxiK8o-wxYzg0']},{'@type':'WebSite','@id':origin+'/#website',name:'Laptop House',alternateName:'لابتوب هاوس',url:origin+'/',inLanguage:['ar','en'],publisher:{'@id':origin+'/#organization'}}]};
+ html=html.replace('</head>',`<meta name="robots" content="index, follow, max-image-preview:large"><link rel="canonical" href="${url}"><link rel="alternate" hreflang="en-SY" href="${origin}/"><link rel="alternate" hreflang="ar-SY" href="${origin}/ar.html"><link rel="alternate" hreflang="x-default" href="${origin}/"><meta property="og:type" content="website"><meta property="og:site_name" content="Laptop House"><meta property="og:title" content="${escape(c.title)}"><meta property="og:description" content="${escape(c.description)}"><meta property="og:url" content="${url}"><meta property="og:locale" content="${lang==='ar'?'ar_SY':'en_US'}"><meta name="twitter:card" content="summary"><script type="application/ld+json">${JSON.stringify(data)}</script></head>`);
+ const section=`<section class="syria-search" aria-labelledby="syria-title"><h2 id="syria-title">${c.heading}</h2><p>${c.text}</p><p><a href="${origin}/" lang="en" hreflang="en-SY">English</a> · <a href="${origin}/ar.html" lang="ar" hreflang="ar-SY">العربية</a></p></section>`;
+ html=html.replace('</main>',section+'</main>');
+ const cards=products.map(p=>`<article><h3>${escape(p.brand+' '+p.name)}</h3><p class="model" dir="ltr">${escape(p.model)}</p><p class="specs" dir="ltr">${escape([p.cpu,p.ram,p.storage,p.display,p.gpu].join(' · '))}</p><div class="card-bottom"><strong>$${p.price} <small>USD</small></strong><button class="buy" data-buy="${p.id}">${translations[lang].buy}</button></div></article>`).join('');
+ html=html.replace(/<div id="products" class="grid">[\s\S]*?<\/div><\/section>/,`<div id="products" class="grid">${cards}</div></section>`);
+ fs.writeFileSync('dist/'+(lang==='ar'?'ar.html':'index.html'),html);
+}
+fs.writeFileSync('dist/robots.txt',`User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`);
+fs.writeFileSync('dist/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${['/','/ar.html'].map(path=>`<url><loc>${origin}${path}</loc><xhtml:link rel="alternate" hreflang="en-SY" href="${origin}/"/><xhtml:link rel="alternate" hreflang="ar-SY" href="${origin}/ar.html"/><xhtml:link rel="alternate" hreflang="x-default" href="${origin}/"/></url>`).join('')}</urlset>\n`);
+console.log('Prepared English and Arabic search pages, static catalog, structured data, robots.txt and sitemap.');
