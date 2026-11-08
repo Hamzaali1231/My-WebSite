@@ -104,3 +104,5 @@ html[dir=rtl] .hero-copy h1{font-size:38px}
 .card-bottom{flex-wrap:wrap;gap:12px}
 .telegram-offers .contact{width:100%}
 }
+
+.telegram-offers-buttons{display:flex;flex-wrap:wrap;gap:10px}.telegram-offers-buttons .contact{flex:1 1 150px}

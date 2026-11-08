@@ -3,5 +3,5 @@ Object.assign(translations.ar,{heroEyebrow:'لابتوب هاوس / تشكيلت
 Object.assign(translations.en,{heroEyebrow:'Laptop House Syria',heroTitle:'Laptops for work, study<br>and <em>gaming.</em>',intro:'Compare 24 laptops across six leading brands, review prices and specifications in USD, then contact us to confirm current availability and delivery.',liveCollection:'IN THE SPOTLIGHT',skipCollection:'Skip to laptops'});
 Object.assign(translations.ar,{heroEyebrow:'لابتوب هاوس سوريا',heroTitle:'لابتوبات للعمل والدراسة<br><em>والألعاب.</em>',intro:'تصفح لابتوبات للبيع في سوريا من ست ماركات: ASUS وHP وLenovo وMSI وAcer وDell. قارن الأسعار بالدولار والمواصفات، وأكد التوفر والسعر والتوصيل قبل طلب الشراء.',liveCollection:'تحت الأضواء',skipCollection:'انتقل إلى الأجهزة'});
 
-Object.assign(translations.en,{telegramOffers:'To see all our offers',telegramChannel:'Join our Telegram channel ↗'});
-Object.assign(translations.ar,{telegramOffers:'لمشاهدة جميع عروضنا',telegramChannel:'انضم إلى قناتنا على تيليجرام ↗'});
+Object.assign(translations.en,{telegramOffers:'To see all our offers',telegramChannel:'Join our Telegram channel ↗',facebookVisit:'Visit our Facebook page ↗'});
+Object.assign(translations.ar,{telegramOffers:'لمشاهدة جميع عروضنا',telegramChannel:'انضم إلى قناتنا على تيليجرام ↗',facebookVisit:'زيارة صفحة فيسبوك ↗'});
