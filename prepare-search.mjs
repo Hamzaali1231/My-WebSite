@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
-const origin='https://hamza-laptop-store-1105.pebblymanatee1.chatgpt.site';
+const origin='https://hamzaali1231.github.io/My-WebSite/dist';
 const ctx=vm.createContext({});
 for(const file of ['translations.js','design-copy.js','gray-copy.js','catalog.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),ctx);
 const translations=vm.runInContext('translations',ctx),products=vm.runInContext('products',ctx);

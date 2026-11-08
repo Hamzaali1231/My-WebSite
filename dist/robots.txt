@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hamza-laptop-store-1105.pebblymanatee1.chatgpt.site/sitemap.xml
+Sitemap: https://hamzaali1231.github.io/My-WebSite/dist/sitemap.xml
