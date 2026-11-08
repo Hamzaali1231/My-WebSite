@@ -1,0 +1,68 @@
+:root{color-scheme:light}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 12px;border:1px solid #d1cbed;border-radius:12px;background:#ffffffb3;color:#514192;font-size:12px;white-space:nowrap;flex-shrink:0}
+.theme-toggle>span:first-child{font-size:21px;line-height:1}.theme-toggle:hover{border-color:#947ce2;background:#eee8ff}
+html[data-theme=dark]{color-scheme:dark;--ink:#eeedff;--muted:#b4b5cf;--line:#35334f;--accent:#bba8ff;--aurora:linear-gradient(120deg,#3675ef,#7951df 58%,#a642cb)}
+html[data-theme=dark] body{background:radial-gradient(ellipse at 0 0,#17336a55,transparent 48%),radial-gradient(ellipse at 100% 18%,#542d7855,transparent 48%),#101125;color:var(--ink)}
+html[data-theme=dark] header{background:transparent;border-color:var(--line)}
+html[data-theme=dark] .logo img{filter:brightness(0) invert(1);opacity:.95}
+html[data-theme=dark] .theme-toggle,html[data-theme=dark] .language-switch{background:#23223b;border-color:#49415f;color:#e9e3ff}
+html[data-theme=dark] .language-switch button:not(.active){color:#d0cae9}
+html[data-theme=dark] .theme-toggle:hover{background:#36304e}
+html[data-theme=dark] .hero-copy .eyebrow,html[data-theme=dark] .section-title .eyebrow,html[data-theme=dark] .hero-copy .brands span{color:#c0b3f5}
+html[data-theme=dark] .hero-copy h1 em{background-image:linear-gradient(120deg,#77b4ff,#b19aff 60%,#df9cf4)}
+html[data-theme=dark] :is(.hero-copy .intro,.hero-proof,.trust,.section-title>p,.specs,.model,.privacy,.photo-note,.gallery-caption,footer){color:var(--muted)}
+html[data-theme=dark] :is(.text-cta,.trust b,.detail-link,.card-bottom strong){color:#e2ddff}
+html[data-theme=dark] .laptop-showcase{background:linear-gradient(145deg,#1b2343,#30203e);border-color:#453760;box-shadow:0 22px 60px #0003}
+html[data-theme=dark] .showcase-stage{background:radial-gradient(ellipse at 45% 35%,#edf0ff,#fff 85%);border-color:#39334d}
+html[data-theme=dark] .showcase-information{background:linear-gradient(120deg,#1c2341,#2c203d);color:var(--ink)}
+html[data-theme=dark] :is(#showcase-name,#showcase-price){color:#f1edff}
+html[data-theme=dark] :is(#showcase-model,#showcase-price small,#showcase-count){color:#bbb5d5}
+html[data-theme=dark] .showcase-specs span{background:#37304f;color:#ded6f4}
+html[data-theme=dark] .showcase-detail{color:#cdbbff}
+html[data-theme=dark] :is(.showcase-selector,.showcase-hint){background:#211d35;color:#bab0d6;border-color:#3a304f}
+html[data-theme=dark] .showcase-selector span{color:#c9c2df}
+html[data-theme=dark] .showcase-selector button.active{background:#413456;border-color:#aa88f3}
+html[data-theme=dark] .showcase-progress{background:#332a48}
+html[data-theme=dark] .tools{background:linear-gradient(120deg,#1c2844,#2c203f);border-color:#403455}
+html[data-theme=dark] .filter:not(.active){color:#c4bedb}
+html[data-theme=dark] :is(.search,select,form input:not([type=checkbox]),textarea){background:#17192f;border-color:#4b425f;color:#eeedff}
+html[data-theme=dark] input::placeholder,html[data-theme=dark] textarea::placeholder{color:#a4a2bb;opacity:1}
+html[data-theme=dark] article{background:#1b1c32;border-color:#38334d;box-shadow:0 4px 20px #0001}
+html[data-theme=dark] article:hover{border-color:#8770bd}
+html[data-theme=dark] :is(.badge,.photo-count){background:#35304e;color:#d4c7f5}
+html[data-theme=dark] .card-top>span:not(.product-number):not(.badge){color:#c7b9e7}
+html[data-theme=dark] :is(.card-bottom,.showcase-action-row){border-color:#3c3451}
+html[data-theme=dark] :is(footer,#order-summary){background:linear-gradient(120deg,#1a223c,#29203b);border-color:var(--line)}
+html[data-theme=dark] dialog{background:#1b1c32;border-color:#463a5c;color:var(--ink)}
+html[data-theme=dark] dialog::backdrop{background:#070817c9}
+html[data-theme=dark] form label>span{color:#c2bdd7}
+html[data-theme=dark] :is(.gallery-arrow,.gallery-thumbs button){background:#302a45;color:#ede5ff;border-color:#57496e}
+html[data-theme=dark] .gallery-thumbs button.active{border-color:#b294f3}
+html[data-theme=dark] .syria-search{color:#b4b5cf;border-color:var(--line)}
+@media(max-width:700px){header{flex-wrap:wrap}.header-actions{flex-wrap:wrap;justify-content:flex-end;gap:8px}.theme-toggle{padding:7px 10px;min-height:40px}.theme-toggle>span:last-child{font-size:11px}}
+/* Cross-fade the complete theme, including gradient backgrounds. */
+@keyframes theme-fade-out{to{opacity:0}}
+@keyframes theme-fade-in{from{opacity:0}}
+::view-transition-old(root){animation:420ms cubic-bezier(.22,1,.36,1) both theme-fade-out}
+::view-transition-new(root){animation:420ms cubic-bezier(.22,1,.36,1) both theme-fade-in}
+::view-transition-group(root){animation-duration:420ms}
+html[data-theme-ready] .theme-toggle>span:first-child{display:inline-block;animation:theme-icon-in 420ms cubic-bezier(.22,1,.36,1) both}
+@keyframes theme-icon-in{from{opacity:0;transform:rotate(-75deg) scale(.65)}to{opacity:1;transform:rotate(0) scale(1)}}
+/* Older browsers still ease surface colors without changing hover movement. */
+@supports not (view-transition-name:root){
+html[data-theme-ready] :is(body,header,footer,article,dialog,.tools,.search,select,input,textarea,.showcase-information,.showcase-selector,.showcase-hint,.badge,.photo-count,.theme-toggle,.language-switch){transition:background-color 350ms ease,color 350ms ease,border-color 350ms ease,box-shadow 350ms ease}
+}
+@media(prefers-reduced-motion:reduce){
+::view-transition-old(root),::view-transition-new(root),::view-transition-group(root){animation:none!important}
+html[data-theme-ready] .theme-toggle>span:first-child{animation:none}
+html[data-theme-ready] :is(body,header,footer,article,dialog,.tools,.search,select,input,textarea,.showcase-information,.showcase-selector,.showcase-hint,.badge,.photo-count,.theme-toggle,.language-switch){transition:none}
+}
+/* Keep actual laptop photos readable on dark selector surfaces. */
+.showcase-selector img{mix-blend-mode:normal;opacity:1;filter:none;background:#fff;border-radius:6px;padding:5px;height:48px;object-fit:contain}
+.showcase-selector button{min-height:78px;gap:6px}
+html[data-theme=dark] .showcase-selector button{background:#29243e;border:1px solid #514363}
+html[data-theme=dark] .showcase-selector button.active{background:#413456;border-color:#c0a1ff;box-shadow:0 0 0 1px #c0a1ff}
+html[data-theme=dark] .showcase-selector button:hover{background:#3a304e}
+html[data-theme=dark] .showcase-selector img{background:#f8f9ff;mix-blend-mode:normal;opacity:1;filter:none}
+html[data-theme=dark] .showcase-selector span{color:#e7dff8}
+@media(max-width:700px){.showcase-selector img{height:52px}.showcase-selector button{min-height:82px}.showcase-selector span{font-size:10px}}
